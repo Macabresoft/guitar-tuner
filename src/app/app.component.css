@@ -1,0 +1,55 @@
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.root {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.github {
+  margin-left: 0.5rem;
+  color: var(--accent-light-color);
+  text-shadow: 0 0 0.25rem var(--shadow-color);
+  margin-bottom: 0.5rem;
+}
+
+h1 {    
+  color: var(--highlight-color);
+  text-shadow: 0 0 0.25rem var(--shadow-color);
+  margin-bottom: 0.25rem;
+  font-size: 2rem;
+}
+
+footer a {
+  margin-left: 0.5rem;
+  color: var(--accent-light-color);
+}
+
+footer {
+  font-size: 0.75rem;
+  height: fit-content;
+  margin-top: 1.5rem;
+  text-shadow: 0 0 0.25rem var(--shadow-color);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.icon {
+  display: inline-flex;
+  align-self: center;
+}
+
+.icon svg {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 1rem; 
+  top: 1rem;
+  position: relative;
+  fill: var(--foreground-color);
+  -webkit-filter: drop-shadow(0 0 0.25rem var(--shadow-color)); 
+  filter: drop-shadow(0 0 0.25rem var(--shadow-color));
+}
