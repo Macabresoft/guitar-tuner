@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'guitar-tuner-web';
+  minimumFrequency = 66.0;
+  maximumFrequency = 392.0;
 
   constructor() {  
   }
@@ -15,37 +17,47 @@ export class AppComponent {
     const stream = await this.getMediaStream();
     const audioContext = new AudioContext();
     const analyserNode = audioContext.createAnalyser();
-    analyserNode.fftSize = 4096;
     const audioSource = audioContext.createMediaStreamSource(stream);
-    const maximumFrequency = audioContext.sampleRate / 2;
-    const bufferLength = analyserNode.frequencyBinCount;
-    const binSize = maximumFrequency / bufferLength;
+    const bufferLength = analyserNode.fftSize;
     const channels = audioSource.channelCount;
-    console.log(binSize);
+
     audioSource.connect(analyserNode);
     analyserNode.connect(audioContext.destination);
 
     if (stream && channels > 0) {
       const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.start(250);
+      mediaRecorder.start(500);
       mediaRecorder.ondataavailable = (event) => {
-        const dataArray = new Float32Array(bufferLength);
-        analyserNode.getFloatFrequencyData (dataArray);
+        const samples = new Float32Array(bufferLength);
+        analyserNode.getFloatTimeDomainData(samples);
 
-        let highestMagnitude = -Infinity;
-        let highestFrequency = -Infinity;
-        let highestIndex = -Infinity;
+        const lowPeriod = Math.floor(audioContext.sampleRate / this.maximumFrequency);
+        const highPeriod = Math.ceil(audioContext.sampleRate / this.minimumFrequency);
 
-        for (let i = 0; i < bufferLength; i++) {
-          let magnitude = dataArray[i];
-          if (magnitude > highestMagnitude) {
-            highestMagnitude = magnitude;
-            highestFrequency = i * binSize;
-            highestIndex = i;
+        if (bufferLength < highPeriod) {
+          alert('WRONG');
+        }
+
+        let greatestMagnitude = -Infinity;
+        let chosenPeriod = -1;
+        let peakVolume = 0.0;
+
+        for (let period = lowPeriod; period < highPeriod; period++) {
+          let sum = 0.0;
+          for (let i = 0; i < bufferLength - period; i++) {
+            sum += samples[i] * samples[i + period];
+            peakVolume = Math.max(peakVolume, Math.abs(samples[i]));
+          }
+
+          let newMagnitude = sum / bufferLength;
+          if (newMagnitude > greatestMagnitude) {
+            chosenPeriod = period;
+            greatestMagnitude = newMagnitude;
           }
         }
 
-        console.log('Frequency: ' + highestFrequency + ' | Magnitude: ' + highestMagnitude + ' | Index: ' + highestIndex);
+        let frequency = audioContext.sampleRate / chosenPeriod;
+        console.log('Frequency: ' + frequency + ' | Magnitude: ' + greatestMagnitude + ' | Peak Volume: ' + peakVolume);
       }
     }
   }
