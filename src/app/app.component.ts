@@ -1,63 +1,31 @@
 import { Component } from '@angular/core';
+import { FrequencyService } from './frequency.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [FrequencyService]
 })
 export class AppComponent {
   title = 'guitar-tuner-web';
   minimumFrequency = 66.0;
   maximumFrequency = 392.0;
 
-  constructor() {  
+  constructor(private frequencyService: FrequencyService) {  
   }
 
   async ngOnInit(): Promise<void> {
     const stream = await this.getMediaStream();
-    const audioContext = new AudioContext();
-    const analyserNode = audioContext.createAnalyser();
-    const audioSource = audioContext.createMediaStreamSource(stream);
-    const bufferLength = analyserNode.fftSize;
-    const channels = audioSource.channelCount;
+    this.frequencyService.Initialize(stream, this.minimumFrequency, this.maximumFrequency);
 
-    audioSource.connect(analyserNode);
-    analyserNode.connect(audioContext.destination);
-
-    if (stream && channels > 0) {
+    if (stream) {
       const mediaRecorder = new MediaRecorder(stream);
       mediaRecorder.start(500);
       mediaRecorder.ondataavailable = (event) => {
-        const samples = new Float32Array(bufferLength);
-        analyserNode.getFloatTimeDomainData(samples);
-
-        const lowPeriod = Math.floor(audioContext.sampleRate / this.maximumFrequency);
-        const highPeriod = Math.ceil(audioContext.sampleRate / this.minimumFrequency);
-
-        if (bufferLength < highPeriod) {
-          alert('WRONG');
-        }
-
-        let greatestMagnitude = -Infinity;
-        let chosenPeriod = -1;
-        let peakVolume = 0.0;
-
-        for (let period = lowPeriod; period < highPeriod; period++) {
-          let sum = 0.0;
-          for (let i = 0; i < bufferLength - period; i++) {
-            sum += samples[i] * samples[i + period];
-            peakVolume = Math.max(peakVolume, Math.abs(samples[i]));
-          }
-
-          let newMagnitude = sum / bufferLength;
-          if (newMagnitude > greatestMagnitude) {
-            chosenPeriod = period;
-            greatestMagnitude = newMagnitude;
-          }
-        }
-
-        let frequency = audioContext.sampleRate / chosenPeriod;
-        console.log('Frequency: ' + frequency + ' | Magnitude: ' + greatestMagnitude + ' | Peak Volume: ' + peakVolume);
+        
+        let frequency = this.frequencyService.GetBufferInformation();
+        console.log('Frequency: ' + frequency);
       }
     }
   }
