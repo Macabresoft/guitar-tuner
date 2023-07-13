@@ -24,8 +24,8 @@ export class AppComponent {
       mediaRecorder.start(500);
       mediaRecorder.ondataavailable = (event) => {
         
-        let frequency = this.frequencyService.GetBufferInformation();
-        console.log('Frequency: ' + frequency);
+        let bufferInformation = this.frequencyService.GetBufferInformation();
+        console.log('Frequency: ' + bufferInformation.frequency + ' Volume: ' + bufferInformation.volume);
       }
     }
   }

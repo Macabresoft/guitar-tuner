@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BufferInformation } from './buffer-information';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,12 @@ export class FrequencyService {
     }
   }
 
-  GetBufferInformation() : number {
+  GetBufferInformation() : BufferInformation {
+    let bufferInformation: BufferInformation = { 
+      frequency: -Infinity, 
+      volume: -Infinity 
+    };
+
     let frequency = -Infinity;
     if (this.audioAnalyser) {
       const samples = new Float32Array(this.bufferLength);
@@ -44,25 +50,29 @@ export class FrequencyService {
   
       let greatestMagnitude = -Infinity;
       let chosenPeriod = -1;
-      let peakVolume = 0.0;
+      let volume = 0.0;
   
       for (let period = this.lowPeriod; period < this.highPeriod; period++) {
         let sum = 0.0;
         for (let i = 0; i < this.bufferLength - period; i++) {
-          sum += samples[i] * samples[i + period];
-          peakVolume = Math.max(peakVolume, Math.abs(samples[i]));
+          let sample = samples[i];
+          sum += sample * samples[i + period];
+          volume = Math.max(volume, Math.abs(sample));
         }
   
         let newMagnitude = sum / this.bufferLength;
-        if (newMagnitude > greatestMagnitude) {
+        if (newMagnitude > greatestMagnitude) {          
           chosenPeriod = period;
           greatestMagnitude = newMagnitude;
         }
       }
 
-      frequency = this.audioContext.sampleRate / chosenPeriod;  
+      bufferInformation = {
+        frequency: this.audioContext.sampleRate / chosenPeriod,
+        volume: volume
+      };
     }
 
-    return frequency;
+    return bufferInformation;
   }
 }
