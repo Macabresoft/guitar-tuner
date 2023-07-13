@@ -11,6 +11,8 @@ export class AppComponent {
   title = 'guitar-tuner-web';
   minimumFrequency = 66.0;
   maximumFrequency = 392.0;
+  currentFrequency = '';
+  currentVolume = '';
 
   constructor(private frequencyService: FrequencyService) {  
   }
@@ -20,14 +22,14 @@ export class AppComponent {
     this.frequencyService.Initialize(stream, this.minimumFrequency, this.maximumFrequency);
 
     if (stream) {
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.start(500);
-      mediaRecorder.ondataavailable = (event) => {
-        
-        let bufferInformation = this.frequencyService.GetBufferInformation();
-        console.log('Frequency: ' + bufferInformation.frequency + ' Volume: ' + bufferInformation.volume);
-      }
+      setInterval(() => this.update(), 500);
     }
+  }
+
+  update() : void {
+    let bufferInformation = this.frequencyService.GetBufferInformation();
+    this.currentFrequency = bufferInformation.frequency.toFixed(2);
+    this.currentVolume = bufferInformation.volume.toFixed(10);
   }
 
   async getMediaStream(): Promise<MediaStream> {
