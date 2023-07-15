@@ -25,6 +25,7 @@ export class TunerComponent {
 
   currentFrequency = '';
   currentVolume = '';
+  currentOffset = '';
   currentNote?: Note;
 
   constructor(private frequencyService: FrequencyService) {  
@@ -66,6 +67,20 @@ export class TunerComponent {
       let currentNote = this.getNearestNote(bufferInformation);
       if (currentNote.frequency > 0) {
         this.currentNote = currentNote;
+
+        if (bufferInformation.frequency < this.currentNote.frequency) {
+          let totalStep = this.currentNote.frequency - this.currentNote.halfStepDown;
+          let current = this.currentNote.frequency - bufferInformation.frequency;
+          this.currentOffset = '-' + (current / totalStep).toFixed(2);
+        }
+        else if (bufferInformation.frequency > this.currentNote.frequency) {
+          let totalStep = this.currentNote.frequency - this.currentNote.halfStepUp;
+          let current = this.currentNote.frequency - bufferInformation.frequency;
+          this.currentOffset = (current / totalStep).toFixed(2);
+        }
+        else {
+          this.currentOffset = '0';
+        }
       }
     }
   }
