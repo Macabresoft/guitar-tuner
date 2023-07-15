@@ -24,6 +24,7 @@ export class TunerComponent {
   private readonly volumeThreshold = 0.0003;
 
   currentFrequency = '';
+  currentVolume = '';
   currentNote?: Note;
 
   constructor(private frequencyService: FrequencyService) {  
@@ -61,6 +62,7 @@ export class TunerComponent {
     let bufferInformation = this.frequencyService.GetBufferInformation();
     if (bufferInformation.volume > this.volumeThreshold) {
       this.currentFrequency = bufferInformation.frequency.toFixed(2);
+      this.currentVolume = bufferInformation.volume.toFixed(5);
       let currentNote = this.getNearestNote(bufferInformation);
       if (currentNote.frequency > 0) {
         this.currentNote = currentNote;

@@ -50,20 +50,8 @@ export class FrequencyService {
       let greatestMagnitude = -Infinity;
       let chosenPeriod = -1;
       let volume = 0.0;
-
-      let minimum = 0;
-      let maximum = 0;
-
-      samples.forEach(sample => {
-        if (sample < minimum) {
-          minimum = sample;
-        }
-        else if (sample > maximum) {
-          maximum = sample;
-        }
-      });
-
   
+      // Get the frequency using an Average Magnitude Difference Function
       for (let period = this.lowPeriod; period < this.highPeriod; period++) {
         let sum = 0.0;
         for (let i = 0; i < this.bufferLength - period; i++) {
