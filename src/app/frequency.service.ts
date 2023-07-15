@@ -5,23 +5,25 @@ import { BufferInformation } from './buffer-information';
   providedIn: 'root'
 })
 export class FrequencyService {
-  readonly audioContext: AudioContext = new AudioContext();
+  audioContext?: AudioContext;
   audioAnalyser?: AnalyserNode;
   audioSource?: MediaStreamAudioSourceNode;
   bufferLength: number = 0;
   channels: number = 0;
   lowPeriod: number = 0;
   highPeriod: number = 0;
+  sampleRate: number = 0;
 
   constructor() { }
 
   Initialize(audioStream: MediaStream, minimumFrequency: number, maximumFrequency: number) : void {
+    this.audioContext = new AudioContext();
+    this.sampleRate = this.audioContext.sampleRate;
     this.audioAnalyser = this.audioContext.createAnalyser();
     this.audioSource = this.audioContext.createMediaStreamSource(audioStream);
     this.bufferLength = this.audioAnalyser.fftSize;
     this.channels = this.audioSource.channelCount;
     this.audioSource.connect(this.audioAnalyser);
-    this.audioAnalyser.connect(this.audioContext.destination);
 
     this.ResetFrequencies(minimumFrequency, maximumFrequency);
 
@@ -32,8 +34,8 @@ export class FrequencyService {
 
   ResetFrequencies(minimumFrequency: number, maximumFrequency: number) {
     if (minimumFrequency > 0 && maximumFrequency > minimumFrequency) {
-      this.lowPeriod = Math.floor(this.audioContext.sampleRate / maximumFrequency);
-      this.highPeriod = Math.ceil(this.audioContext.sampleRate / minimumFrequency);
+      this.lowPeriod = Math.floor(this.sampleRate / maximumFrequency);
+      this.highPeriod = Math.ceil(this.sampleRate / minimumFrequency);
     }
   }
 
@@ -68,7 +70,7 @@ export class FrequencyService {
       }
 
       bufferInformation = {
-        frequency: this.audioContext.sampleRate / chosenPeriod,
+        frequency: this.sampleRate / chosenPeriod,
         volume: volume
       };
     }
