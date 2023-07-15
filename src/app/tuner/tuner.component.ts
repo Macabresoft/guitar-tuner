@@ -20,7 +20,8 @@ export class TunerComponent {
     { frequency: 196.00, halfStepDown: 185.00, halfStepUp: 207.65, name: 'G', octave: 3 },
     { frequency: 246.94, halfStepDown: 233.08, halfStepUp: 261.63, name: 'B', octave: 3 },
     { frequency: 329.63, halfStepDown:  311.13, halfStepUp: 349.23, name: 'E', octave: 4 }
-  ];  
+  ];
+  private readonly volumeThreshold = 0.0003;
 
   currentFrequency = '';
   currentNote?: Note;
@@ -58,10 +59,12 @@ export class TunerComponent {
 
   private update() : void {
     let bufferInformation = this.frequencyService.GetBufferInformation();
-    this.currentFrequency = bufferInformation.frequency.toFixed(2);
-    let currentNote = this.getNearestNote(bufferInformation);
-    if (currentNote.frequency > 0) {
-      this.currentNote = currentNote;
+    if (bufferInformation.volume > this.volumeThreshold) {
+      this.currentFrequency = bufferInformation.frequency.toFixed(2);
+      let currentNote = this.getNearestNote(bufferInformation);
+      if (currentNote.frequency > 0) {
+        this.currentNote = currentNote;
+      }
     }
   }
 }
