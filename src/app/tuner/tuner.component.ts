@@ -10,7 +10,7 @@ import { BufferInformation } from '../buffer-information';
   providers: [FrequencyService]
 })
 export class TunerComponent {
-  private readonly meterBins = 12;
+  private readonly meterBins = 10;
   private readonly minimumFrequency = 60.0;
   private readonly maximumFrequency = 392.0;
   private readonly notes: Note[] = [
