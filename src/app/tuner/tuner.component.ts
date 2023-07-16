@@ -41,6 +41,10 @@ export class TunerComponent {
     }
   }
 
+  private createDefaultOffset() : string {
+    return '[' + '-'.repeat(this.meterBins) + '|' + '-'.repeat(this.meterBins) + ']'
+  }
+
   private async getMediaStream(): Promise<MediaStream> {
     return await navigator.mediaDevices.getUserMedia({ audio: true });
   }
@@ -93,10 +97,5 @@ export class TunerComponent {
         }
       }
     }
-  }
-
-  private createDefaultOffset() : string {
-    return '[' + '-'.repeat(this.meterBins) + '|' + '-'.repeat(this.meterBins) + ']'
-
   }
 }
