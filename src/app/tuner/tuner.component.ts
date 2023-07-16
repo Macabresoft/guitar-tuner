@@ -25,9 +25,9 @@ export class TunerComponent {
   private readonly volumeThreshold = 0.001;
 
   currentFrequency = '';
-  currentVolume = '';
-  currentOffset = this.createDefaultOffset();
   currentNote?: Note;
+  currentVolume = '';
+  frequencyMeter = this.createDefaultOffset();
 
   constructor(private frequencyService: FrequencyService) {  
   }
@@ -37,7 +37,7 @@ export class TunerComponent {
     this.frequencyService.Initialize(stream, this.minimumFrequency, this.maximumFrequency);
 
     if (stream) {
-      setInterval(() => this.update(), 500);
+      setInterval(() => this.update(), 250);
     }
   }
 
@@ -87,13 +87,13 @@ export class TunerComponent {
         }
 
         if (offset < this.meterBins) {
-          this.currentOffset = '[' + '-'.repeat(offset) + '>' + '-'.repeat(this.meterBins - offset - 1) + '|' + '-'.repeat(this.meterBins) + ']';
+          this.frequencyMeter = '[' + '-'.repeat(offset) + '>' + '-'.repeat(this.meterBins - offset - 1) + '|' + '-'.repeat(this.meterBins) + ']';
         }
         else if (offset > this.meterBins) {
-          this.currentOffset = '[' + '-'.repeat(this.meterBins) + '|' +  '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
+          this.frequencyMeter = '[' + '-'.repeat(this.meterBins) + '|' +  '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
         }
         else {
-          this.currentOffset = this.createDefaultOffset();
+          this.frequencyMeter = this.createDefaultOffset();
         }
       }
     }
