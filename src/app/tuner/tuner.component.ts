@@ -10,6 +10,7 @@ import { BufferInformation } from '../buffer-information';
   providers: [FrequencyService]
 })
 export class TunerComponent {
+  private readonly meterBins = 10;
   private readonly minimumFrequency = 60.0;
   private readonly maximumFrequency = 392.0;
   private readonly notes: Note[] = [
@@ -25,7 +26,7 @@ export class TunerComponent {
 
   currentFrequency = '';
   currentVolume = '';
-  currentOffset = '';
+  currentOffset = this.createDefaultOffset();
   currentNote?: Note;
 
   constructor(private frequencyService: FrequencyService) {  
@@ -68,20 +69,34 @@ export class TunerComponent {
       if (currentNote.frequency > 0) {
         this.currentNote = currentNote;
 
+        let offset = this.meterBins;
+
         if (bufferInformation.frequency < this.currentNote.frequency) {
           let totalStep = this.currentNote.frequency - this.currentNote.halfStepDown;
           let current = this.currentNote.frequency - bufferInformation.frequency;
-          this.currentOffset = '-' + (current / totalStep).toFixed(2);
+          offset -= Math.floor((current / totalStep) * this.meterBins);
         }
         else if (bufferInformation.frequency > this.currentNote.frequency) {
-          let totalStep = this.currentNote.frequency - this.currentNote.halfStepUp;
-          let current = this.currentNote.frequency - bufferInformation.frequency;
-          this.currentOffset = (current / totalStep).toFixed(2);
+          let totalStep = this.currentNote.halfStepUp -  this.currentNote.frequency;
+          let current = this.currentNote.halfStepUp - bufferInformation.frequency;
+          offset += Math.ceil((current / totalStep) * this.meterBins);
+        }
+
+        if (offset < this.meterBins) {
+          this.currentOffset = '[' + '-'.repeat(offset) + '>' + '-'.repeat(this.meterBins - offset - 1) + '|' + '-'.repeat(this.meterBins) + ']';
+        }
+        else if (offset > this.meterBins) {
+          this.currentOffset = '[' + '-'.repeat(this.meterBins) + '|' +  '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
         }
         else {
-          this.currentOffset = '0';
+          this.currentOffset = this.createDefaultOffset();
         }
       }
     }
+  }
+
+  private createDefaultOffset() : string {
+    return '[' + '-'.repeat(this.meterBins) + '|' + '-'.repeat(this.meterBins) + ']'
+
   }
 }

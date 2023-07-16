@@ -19,7 +19,6 @@
   color: var(--highlight-color);
   font-weight: normal;
   text-shadow: 0 0 0.25rem var(--shadow-color);
-  height: 1.5rem;
   margin: 0.25rem 0.5rem 0.5rem 0.5rem;
   font-size: 1rem;
   text-align: center;
@@ -27,4 +26,13 @@
 
 .digital {
   background: black;
+}
+
+.digital p {
+  font-family: monospace;
+}
+
+.meter {
+  font-size: 4rem;
+  height: 5rem;
 }
