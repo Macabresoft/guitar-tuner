@@ -10,7 +10,7 @@ import { BufferInformation } from '../buffer-information';
   providers: [FrequencyService]
 })
 export class TunerComponent {
-  private readonly meterBins = 10;
+  private readonly meterBins = 12;
   private readonly minimumFrequency = 60.0;
   private readonly maximumFrequency = 392.0;
   private readonly notes: Note[] = [
@@ -27,7 +27,7 @@ export class TunerComponent {
   currentFrequency = '';
   currentNote?: Note;
   currentVolume = '';
-  frequencyMeter = this.createDefaultOffset();
+  frequencyMeter = this.createDefaultOffset('|');
 
   constructor(private frequencyService: FrequencyService) {  
   }
@@ -41,8 +41,8 @@ export class TunerComponent {
     }
   }
 
-  private createDefaultOffset() : string {
-    return '[' + '-'.repeat(this.meterBins) + '|' + '-'.repeat(this.meterBins) + ']'
+  private createDefaultOffset(middleCharacter: string) : string {
+    return '[' + '-'.repeat(this.meterBins) + middleCharacter + '-'.repeat(this.meterBins) + ']'
   }
 
   private async getMediaStream(): Promise<MediaStream> {
@@ -93,7 +93,7 @@ export class TunerComponent {
           this.frequencyMeter = '[' + '-'.repeat(this.meterBins) + '|' +  '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
         }
         else {
-          this.frequencyMeter = this.createDefaultOffset();
+          this.frequencyMeter = this.createDefaultOffset('=');
         }
       }
     }
