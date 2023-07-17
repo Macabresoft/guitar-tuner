@@ -27,9 +27,13 @@ export class TunerComponent {
   currentFrequency = '';
   currentNote?: Note;
   currentVolume = '';
-  frequencyMeter = this.createDefaultOffset('|');
+  frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
+  frequencyMeterRight = this.createDefaultFrequencyMeterRight();
+  isHighlighted = false;
+
 
   constructor(private frequencyService: FrequencyService) {  
+
   }
 
   async ngOnInit(): Promise<void> {
@@ -41,8 +45,12 @@ export class TunerComponent {
     }
   }
 
-  private createDefaultOffset(middleCharacter: string) : string {
-    return '[' + '-'.repeat(this.meterBins) + middleCharacter + '-'.repeat(this.meterBins) + ']'
+  private createDefaultFrequencyMeterRight() : string {
+    return '-'.repeat(this.meterBins) + ']';
+  }
+
+  private createDefaultFrequencyMeterLeft() : string {
+    return '[' + '-'.repeat(this.meterBins);
   }
 
   private async getMediaStream(): Promise<MediaStream> {
@@ -87,13 +95,19 @@ export class TunerComponent {
         }
 
         if (offset < this.meterBins) {
-          this.frequencyMeter = '[' + '-'.repeat(offset) + '>' + '-'.repeat(this.meterBins - offset - 1) + '|' + '-'.repeat(this.meterBins) + ']';
+          this.frequencyMeterLeft = '[' + '-'.repeat(offset) + '>' + '-'.repeat(this.meterBins - offset - 1);
+          this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
+          this.isHighlighted = false;
         }
         else if (offset > this.meterBins) {
-          this.frequencyMeter = '[' + '-'.repeat(this.meterBins) + '|' +  '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
+          this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
+          this.frequencyMeterRight = '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
+          this.isHighlighted = false;
         }
         else {
-          this.frequencyMeter = this.createDefaultOffset('=');
+          this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
+          this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
+          this.isHighlighted = true;
         }
       }
     }

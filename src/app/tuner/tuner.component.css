@@ -10,7 +10,6 @@
 }
 
 .digital h1 {
-  color: var(--highlight-color);
   font-weight: normal;
   text-shadow: 0 0 0.25rem var(--shadow-color);
   height: 10rem;
@@ -23,14 +22,19 @@
 
 .digital p {
   font-family: monospace;
-  color: var(--highlight-color);
   font-weight: normal;
   text-shadow: 0 0 0.25rem var(--shadow-color);
   margin: 0.25rem 0.5rem 0.5rem 0.5rem;
   text-align: center;
 }
 
+.highlight {
+  color: var(--highlight-color);
+
+}
+
 .meter {
   font-size: 2rem;
   height: 3rem;
 }
+
