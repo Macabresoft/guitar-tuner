@@ -26,7 +26,6 @@ export class TunerComponent {
 
   currentFrequency = '';
   currentNote?: Note;
-  currentVolume = '';
   frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
   frequencyMeterRight = this.createDefaultFrequencyMeterRight();
   isHighlighted = false;
@@ -76,7 +75,6 @@ export class TunerComponent {
     let bufferInformation = this.frequencyService.GetBufferInformation();
     if (bufferInformation.volume > this.volumeThreshold) {
       this.currentFrequency = bufferInformation.frequency.toFixed(2);
-      this.currentVolume = bufferInformation.volume.toFixed(5);
       let currentNote = this.getNearestNote(bufferInformation);
       if (currentNote.frequency > 0) {
         this.currentNote = currentNote;
