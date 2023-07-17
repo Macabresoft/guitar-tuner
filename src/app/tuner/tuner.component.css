@@ -1,8 +1,8 @@
 .digital {
   background: black;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   margin: 0.5rem;
-  padding: 0.5rem;
+  padding: 2rem 1rem;
   width: fit-content;
   text-align:center;
   margin-left: auto;
@@ -16,7 +16,6 @@
   margin: 0.25rem 0.5rem 0.5rem 0.5rem;
   font-size: 10rem;
   text-align: center;
-  margin-top: 2rem;
   margin-bottom: 4rem;
 }
 
@@ -26,8 +25,8 @@
   text-shadow: 0 0 0.25rem var(--shadow-color);
   margin: 0.25rem 0.5rem 0.5rem 0.5rem;
   text-align: center;
-  font-size: 2rem;
-  height: 3rem;
+  font-size: 1.5rem;
+  height: 2rem;
 }
 
 .highlight {
