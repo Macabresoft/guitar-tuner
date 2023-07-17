@@ -3,7 +3,9 @@
     <h1 class="center" [ngClass]="{'highlight' : isHighlighted}">
       {{ currentNote?.name}}<sub>{{ currentNote?.octave }}</sub>
     </h1>
-    <p class="center meter">&#x266d;{{ frequencyMeterLeft }}<span [ngClass]="{'highlight' : isHighlighted}">|</span>{{ frequencyMeterRight }}&#x266F;</p>
+    <p class="center meter">
+      &#x266d;{{ frequencyMeterLeft }}<span [ngClass]="{'highlight' : isHighlighted}">|</span>{{ frequencyMeterRight }}&#x266F;
+    </p>
     <p class="center">{{ currentFrequency }} Hz</p>
   </div>
 </div>
