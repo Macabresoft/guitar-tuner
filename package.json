@@ -1,5 +1,5 @@
 {
-  "name": "guitar-tuner-web",
+  "name": "guitar-tuner",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
