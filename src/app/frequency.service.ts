@@ -8,13 +8,15 @@ export class FrequencyService {
   audioContext?: AudioContext;
   audioAnalyser?: AnalyserNode;
   audioSource?: MediaStreamAudioSourceNode;
+  samples?: Float32Array;
   bufferLength: number = 0;
   channels: number = 0;
   lowPeriod: number = 0;
   highPeriod: number = 0;
   sampleRate: number = 0;
 
-  constructor() { }
+  constructor() { 
+  }
 
   Initialize(audioStream: MediaStream, minimumFrequency: number, maximumFrequency: number) : void {
     this.audioContext = new AudioContext();
@@ -22,6 +24,7 @@ export class FrequencyService {
     this.audioAnalyser = this.audioContext.createAnalyser();
     this.audioSource = this.audioContext.createMediaStreamSource(audioStream);
     this.bufferLength = this.audioAnalyser.fftSize;
+    this.samples = new Float32Array(this.bufferLength);
     this.channels = this.audioSource.channelCount;
     this.audioSource.connect(this.audioAnalyser);
 
@@ -45,9 +48,8 @@ export class FrequencyService {
       volume: -Infinity 
     };
 
-    if (this.audioAnalyser) {
-      const samples = new Float32Array(this.bufferLength);
-      this.audioAnalyser.getFloatTimeDomainData(samples);
+    if (this.audioAnalyser && this.samples) {
+      this.audioAnalyser.getFloatTimeDomainData(this.samples);
   
       let greatestMagnitude = -Infinity;
       let chosenPeriod = -1;
@@ -57,8 +59,8 @@ export class FrequencyService {
       for (let period = this.lowPeriod; period < this.highPeriod; period++) {
         let sum = 0.0;
         for (let i = 0; i < this.bufferLength - period; i++) {
-          let sample = samples[i];
-          sum += sample * samples[i + period];
+          let sample = this.samples[i];
+          sum += sample * this.samples[i + period];
           volume = Math.max(volume, Math.abs(sample));
         }
   

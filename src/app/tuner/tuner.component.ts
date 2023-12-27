@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FrequencyService } from '../frequency.service';
 import { Note } from '../note';
 import { BufferInformation } from '../buffer-information';
-
+import { Subscription } from 'rxjs';
+import {timer} from 'rxjs' ;
 @Component({
   selector: 'app-tuner',
   templateUrl: './tuner.component.html',
@@ -29,10 +30,9 @@ export class TunerComponent {
   frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
   frequencyMeterRight = this.createDefaultFrequencyMeterRight();
   isHighlighted = false;
-
+  subscription?: Subscription;
 
   constructor(private frequencyService: FrequencyService) {  
-
   }
 
   async ngOnInit(): Promise<void> {
@@ -40,7 +40,13 @@ export class TunerComponent {
     this.frequencyService.Initialize(stream, this.minimumFrequency, this.maximumFrequency);
 
     if (stream) {
-      setInterval(() => this.update(), 250);
+      this.subscription = timer(0, 250).subscribe(() => this.update());
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
@@ -72,42 +78,47 @@ export class TunerComponent {
   }
 
   private update() : void {
-    let bufferInformation = this.frequencyService.GetBufferInformation();
-    if (bufferInformation.volume > this.volumeThreshold) {
-      this.currentFrequency = bufferInformation.frequency.toFixed(2);
-      let currentNote = this.getNearestNote(bufferInformation);
-      if (currentNote.frequency > 0) {
-        this.currentNote = currentNote;
 
-        let offset = this.meterBins;
-
-        if (bufferInformation.frequency < this.currentNote.frequency) {
-          let totalStep = this.currentNote.frequency - this.currentNote.halfStepDown;
-          let current = this.currentNote.frequency - bufferInformation.frequency;
-          offset -= Math.floor((current / totalStep) * this.meterBins);
-        }
-        else if (bufferInformation.frequency > this.currentNote.frequency) {
-          let totalStep = this.currentNote.halfStepUp -  this.currentNote.frequency;
-          let current = this.currentNote.halfStepUp - bufferInformation.frequency;
-          offset += Math.ceil((current / totalStep) * this.meterBins);
-        }
-
-        if (offset < this.meterBins) {
-          this.frequencyMeterLeft = '[' + '-'.repeat(offset) + '>' + '-'.repeat(this.meterBins - offset - 1);
-          this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
-          this.isHighlighted = false;
-        }
-        else if (offset > this.meterBins) {
-          this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
-          this.frequencyMeterRight = '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
-          this.isHighlighted = false;
-        }
-        else {
-          this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
-          this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
-          this.isHighlighted = true;
+    try {
+      let bufferInformation = this.frequencyService.GetBufferInformation();
+      if (bufferInformation.volume > this.volumeThreshold) {
+        this.currentFrequency = bufferInformation.frequency.toFixed(2);
+        let currentNote = this.getNearestNote(bufferInformation);
+        if (currentNote.frequency > 0) {
+          this.currentNote = currentNote;
+  
+          let offset = this.meterBins;
+  
+          if (bufferInformation.frequency < this.currentNote.frequency) {
+            let totalStep = this.currentNote.frequency - this.currentNote.halfStepDown;
+            let current = this.currentNote.frequency - bufferInformation.frequency;
+            offset -= Math.floor((current / totalStep) * this.meterBins);
+          }
+          else if (bufferInformation.frequency > this.currentNote.frequency) {
+            let totalStep = this.currentNote.halfStepUp -  this.currentNote.frequency;
+            let current = this.currentNote.halfStepUp - bufferInformation.frequency;
+            offset += Math.ceil((current / totalStep) * this.meterBins);
+          }
+  
+          if (offset < this.meterBins) {
+            this.frequencyMeterLeft = '[' + '-'.repeat(offset) + '>' + '-'.repeat(this.meterBins - offset - 1);
+            this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
+            this.isHighlighted = false;
+          }
+          else if (offset > this.meterBins) {
+            this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
+            this.frequencyMeterRight = '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
+            this.isHighlighted = false;
+          }
+          else {
+            this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
+            this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
+            this.isHighlighted = true;
+          }
         }
       }
+    }
+    catch (e) {
     }
   }
 }
