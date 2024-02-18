@@ -1,9 +1,13 @@
 <div class="center">
-  <div class="digital center">
+  <div class="digital">
     <h1 class="center" [ngClass]="{'highlight' : isHighlighted}">
       {{ currentNote?.name}}<sub>{{ currentNote?.octave }}</sub>
     </h1>
-    <p class="center meter">
+    
+    <!-- maintains the size even if currentNote is null -->
+    <h1 class="center">&nbsp;<sub>&nbsp;</sub></h1>
+
+    <p class="center">
       &#x266d;{{ frequencyMeterLeft }}<span [ngClass]="{'highlight' : isHighlighted}">|</span>{{ frequencyMeterRight }}&#x266F;
     </p>
     <p class="center">{{ currentFrequency }} Hz</p>

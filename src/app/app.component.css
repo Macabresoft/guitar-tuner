@@ -3,10 +3,10 @@
   justify-content: center;
 }
 
-.root {
-  max-width: 1024px;
+app-root {
   margin-left: auto;
   margin-right: auto;
+  min-height: 90vh;
 }
 
 .github {
