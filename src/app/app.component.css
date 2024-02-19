@@ -1,19 +1,17 @@
-.center {
-  display: flex;
+footer {
+  font-size: 0.75rem;
+  height: fit-content;
+  margin-top: 3rem;
+  text-shadow: 0 0 0.25rem var(--shadow-color);
   justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-app-root {
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 90vh;
-}
-
-.github {
+footer a {
   margin-left: 0.5rem;
   color: var(--accent-light-color);
-  text-shadow: 0 0 0.25rem var(--shadow-color);
-  margin-bottom: 0.5rem;
 }
 
 h1 {    
@@ -23,19 +21,26 @@ h1 {
   font-size: 2rem;
 }
 
-footer a {
-  margin-left: 0.5rem;
-  color: var(--accent-light-color);
+.root {
+  height: 90vh;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-footer {
-  font-size: 0.75rem;
-  height: fit-content;
-  margin-top: 1.5rem;
+.github {
+  margin-left: 0.5rem;
+  color: var(--accent-light-color);
   text-shadow: 0 0 0.25rem var(--shadow-color);
+  margin-bottom: 0.5rem;
+}
+
+.header {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .icon {
@@ -55,11 +60,19 @@ footer {
 }
 
 @media all and (display-mode: standalone) {
+  .root {
+    justify-content: space-between;
+  }
+
   .github {
     display: none;
   }
 
-  .footer {
+  footer {
+    display: none;
+  }
+
+  footer a {
     display: none;
   }
 }

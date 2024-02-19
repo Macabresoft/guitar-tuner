@@ -1,22 +1,17 @@
 .digital {
   background: black;
   border-radius: 1rem;
-  margin: 0.5rem;
-  padding: 2rem 1rem;
   max-width: 75vh;
-  width: 90vw;
-  min-height: 100%;
-  max-height: 66vh;
-  text-align:center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  width: 75vh;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;  
+  padding: 2rem 0;
   container-type: inline-size;
+  height: 90%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .digital h1 {
@@ -26,6 +21,7 @@
   font-size: 50cqi;
   text-align: center;
   user-select: none;
+  flex: 1;
 }
 
 .digital p {
@@ -33,9 +29,12 @@
   font-weight: normal;
   text-shadow: 0 0 0.25rem var(--shadow-color);
   margin: 0.25rem 0.5rem 0.5rem 0.5rem;
-  text-align: center;
-  font-size: 6.5cqi;
+  font-size: 6cqi;
   user-select: none;
+}
+
+.frequency {
+  margin-top: auto;
 }
 
 .highlight {
@@ -46,12 +45,5 @@
   .digital {
     max-width: 90vw;
     width: 90vw;
-    max-height: 90vw;
-    height: 90vw;
-  }
-
-  .digital p {
-    margin-top: auto;
-    vertical-align: bottom;
   }
 }
