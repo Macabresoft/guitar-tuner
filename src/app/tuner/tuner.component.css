@@ -1,40 +1,19 @@
-.digital {
-  background: black;
-  border-radius: 1rem;
-  max-width: 75vh;
-  width: 75vh;
-  text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;  
-  padding: 2rem 0;
-  container-type: inline-size;
-  height: 90%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.digital h1 {
+.note {
   font-weight: normal;
-  text-shadow: 0 0 0.25rem var(--shadow-color);
   margin: 0 0 0.5rem 0.5rem;
-  font-size: 50cqi;
+  font-size: 10vw;
   text-align: center;
-  user-select: none;
-  flex: 1;
-}
-
-.digital p {
-  font-family: monospace;
-  font-weight: normal;
-  text-shadow: 0 0 0.25rem var(--shadow-color);
-  margin: 0.25rem 0.5rem 0.5rem 0.5rem;
-  font-size: 6cqi;
   user-select: none;
 }
 
 .frequency {
-  margin-top: auto;
+  font-family: monospace;
+  font-weight: normal;
+  margin: auto 0.5rem 0.5rem 0.5rem;
+  font-size: 3vw;
+  user-select: none;
+  text-wrap: nowrap;
+  text-align: center;
 }
 
 .highlight {
@@ -42,8 +21,11 @@
 }
 
 @media all and (display-mode: standalone) {
-  .digital {
-    max-width: 90vw;
-    width: 90vw;
+  .note {
+    font-size: 50vw;
+  }
+  
+  .frequency {
+    font-size: 5vw;
   }
 }
