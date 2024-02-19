@@ -21,6 +21,7 @@
   margin: 0 0 0.5rem 0.5rem;
   font-size: 50cqi;
   text-align: center;
+  vertical-align: middle;
 }
 
 .digital p {
@@ -30,6 +31,7 @@
   margin: 0.25rem 0.5rem 0.5rem 0.5rem;
   text-align: center;
   font-size: 6.5cqi;
+  vertical-align: bottom;
 }
 
 .highlight {
