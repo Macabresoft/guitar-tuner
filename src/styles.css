@@ -15,3 +15,9 @@ html {
   color: var(--foreground-color);
   background-color: var(--background-color);
 }
+
+@media all and (display-mode: standalone) {
+  html {
+    background-color: black;
+  }
+}
