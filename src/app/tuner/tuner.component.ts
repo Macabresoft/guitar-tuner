@@ -23,6 +23,7 @@ export class TunerComponent {
     { frequency: 246.94, halfStepDown: 233.08, halfStepUp: 261.63, name: 'B', octave: 3 },
     { frequency: 329.63, halfStepDown:  311.13, halfStepUp: 349.23, name: 'E', octave: 4 }
   ];
+
   private readonly volumeThreshold = 0.001;
 
   currentFrequency = '';
