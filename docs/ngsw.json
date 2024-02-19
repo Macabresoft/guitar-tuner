@@ -1,0 +1,81 @@
+{
+  "configVersion": 1,
+  "timestamp": 1708350689839,
+  "index": "/guitar-tuner/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/guitar-tuner/favicon.ico",
+        "/guitar-tuner/index.html",
+        "/guitar-tuner/main.2861925c392ef432.js",
+        "/guitar-tuner/manifest.webmanifest",
+        "/guitar-tuner/polyfills.8148777ebeb0a209.js",
+        "/guitar-tuner/runtime.0f34f3f273ff3d97.js",
+        "/guitar-tuner/styles.dfe39f99381892d0.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/guitar-tuner/assets/icons/icon-128x128.png",
+        "/guitar-tuner/assets/icons/icon-144x144.png",
+        "/guitar-tuner/assets/icons/icon-152x152.png",
+        "/guitar-tuner/assets/icons/icon-192x192.png",
+        "/guitar-tuner/assets/icons/icon-384x384.png",
+        "/guitar-tuner/assets/icons/icon-512x512.png",
+        "/guitar-tuner/assets/icons/icon-72x72.png",
+        "/guitar-tuner/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/guitar-tuner/assets/icons/icon-128x128.png": "40ef3cec819613965fcca19bbdd0884d57cf872d",
+    "/guitar-tuner/assets/icons/icon-144x144.png": "1b1623e2f7dfc1937e24b3d1429ddbe9e69917af",
+    "/guitar-tuner/assets/icons/icon-152x152.png": "e549fbba76e589d07a1e89248dbfb9ab2af7c7f1",
+    "/guitar-tuner/assets/icons/icon-192x192.png": "b58a18bcfece21463394e3413b1549eb7a14e3c5",
+    "/guitar-tuner/assets/icons/icon-384x384.png": "dbbedb628d3d9d548e4c90a96fd267b5cd0d1af1",
+    "/guitar-tuner/assets/icons/icon-512x512.png": "06867e2c92bcc48d38ddbbb0354a6b98a70d0e9f",
+    "/guitar-tuner/assets/icons/icon-72x72.png": "d2778189f5ce5b757f8f8dbf17ac00c252d6ad0e",
+    "/guitar-tuner/assets/icons/icon-96x96.png": "63cf54846976d0c1bd1175e6aed0ccda4d61d92e",
+    "/guitar-tuner/favicon.ico": "e61d99fde460daf4856aadc23401032361bfc348",
+    "/guitar-tuner/index.html": "d175c0f4d5894e557c8e983c21256a20a9a49c38",
+    "/guitar-tuner/main.2861925c392ef432.js": "1f7e64da75326a4fee140fcff5a24528bea1485b",
+    "/guitar-tuner/manifest.webmanifest": "1facf10a34e223be3aff96323ac905256b3f0c92",
+    "/guitar-tuner/polyfills.8148777ebeb0a209.js": "87d6fc0f69107e173e2c61443878e0d3bbf9a2fa",
+    "/guitar-tuner/runtime.0f34f3f273ff3d97.js": "17c6825a72d3cd4270d52d121d2e6d3ab1899456",
+    "/guitar-tuner/styles.dfe39f99381892d0.css": "0cd178378efdb284a0cecbaf66db0001996bfc07"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
