@@ -36,20 +36,11 @@
   color: var(--highlight-color);
 }
 
-.middle {
-  vertical-align: middle;
-}
-
-.bottom {
-  vertical-align: bottom;
-}
-
 @media all and (display-mode: standalone) {
   .digital {
     margin: 0;
-    max-height: 90vh;
-    height: 90vh;
     max-width: 90vw;
     width: 90vw;
+    margin: 0 auto;
   }
 }
