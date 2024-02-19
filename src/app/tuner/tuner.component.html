@@ -1,11 +1,15 @@
 <div class="center">
   <div class="digital">
-    <h1 class="center" [ngClass]="{'highlight' : isHighlighted}">
-      {{ currentNote?.name ?? '&nbsp;'}}<sub>{{ currentNote?.octave ?? '&nbsp;' }}</sub>
-    </h1>
-    <p class="center">
-      &#x266d;{{ frequencyMeterLeft }}<span [ngClass]="{'highlight' : isHighlighted}">|</span>{{ frequencyMeterRight }}&#x266F;
-    </p>
-    <p class="center">{{ currentFrequency }} Hz</p>
+    <div>
+      <h1 class="center" [ngClass]="{'highlight' : isHighlighted}">
+        {{ currentNote?.name ?? '&nbsp;'}}<sub>{{ currentNote?.octave ?? '&nbsp;' }}</sub>
+      </h1>
+    </div>
+    <div>
+      <p class="center">
+        &#x266d;{{ frequencyMeterLeft }}<span [ngClass]="{'highlight' : isHighlighted}">|</span>{{ frequencyMeterRight }}&#x266F;
+      </p>
+      <p class="center">{{ currentFrequency }} Hz</p>
+    </div>
   </div>
 </div>
