@@ -55,10 +55,6 @@ footer {
 }
 
 @media all and (display-mode: standalone) {
-  .header {
-    display: none;
-  }
-
   .github {
     display: none;
   }

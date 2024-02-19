@@ -21,6 +21,7 @@
   margin: 0 0 0.5rem 0.5rem;
   font-size: 50cqi;
   text-align: center;
+  user-select: none;
 }
 
 .digital p {
@@ -30,6 +31,7 @@
   margin: 0.25rem 0.5rem 0.5rem 0.5rem;
   text-align: center;
   font-size: 6.5cqi;
+  user-select: none;
 }
 
 .highlight {
@@ -38,9 +40,14 @@
 
 @media all and (display-mode: standalone) {
   .digital {
-    margin: 0;
     max-width: 90vw;
     width: 90vw;
-    margin: 0 auto;
+    max-height: 90vw;
+    height: 90vw;
+  }
+
+  .digital p {
+    margin-top: auto;
+    vertical-align: bottom;
   }
 }
