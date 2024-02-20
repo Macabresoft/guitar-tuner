@@ -1,7 +1,6 @@
 .note {
   font-weight: normal;
-  margin: 0 0 0.5rem 0.5rem;
-  font-size: 10vw;
+  font-size: min(10vw, 10vh);
   text-align: center;
   user-select: none;
 }
@@ -9,8 +8,8 @@
 .frequency {
   font-family: monospace;
   font-weight: normal;
-  margin: auto 0.5rem 0.5rem 0.5rem;
-  font-size: 3vw;
+  margin: 0.5rem;
+  font-size: min(3vw, 3vh);
   user-select: none;
   text-wrap: nowrap;
   text-align: center;
@@ -22,10 +21,10 @@
 
 @media all and (display-mode: standalone) {
   .note {
-    font-size: 50vw;
+    font-size: min(30vw, 20vh);
   }
   
   .frequency {
-    font-size: 5vw;
+    font-size: min(5vw, 5vh);
   }
 }

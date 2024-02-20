@@ -2,11 +2,11 @@ footer {
   font-size: 0.75rem;
   height: fit-content;
   margin-top: 3rem;
-  justify-content: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 footer a {
@@ -20,8 +20,11 @@ h1 {
   font-size: 2rem;
 }
 
+app-tuner {
+  flex: 1;
+}
+
 .root {
-  height: 90vh;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -50,10 +53,6 @@ h1 {
 }
 
 @media all and (display-mode: standalone) {
-  .root {
-    justify-content: space-between;
-  }
-
   .github {
     display: none;
   }
