@@ -2,8 +2,10 @@
   --foreground-color: #E3DAC9;
   --accent-color: #634960;
   --accent-light-color: #856F7C;
+  --accent-dark-color: #483646;
   --highlight-color: #C8AB37;
   --background-light-color: #333;
+  --shadow-color: #333;
 }
 
 html {
@@ -15,5 +17,6 @@ html {
 @media all and (display-mode: standalone) {
   html {
     user-select: none;
+    background-color: var(--accent-dark-color);
   }
 }

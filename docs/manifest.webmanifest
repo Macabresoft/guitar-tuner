@@ -2,7 +2,7 @@
   "name": "Guitar Tuner by Macabresoft",
   "short_name": "Guitar Tuner",
   "theme_color": "#1976d2",
-  "background_color": "#000000",
+  "background_color": "#483646",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

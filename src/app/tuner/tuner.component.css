@@ -8,11 +8,10 @@
 .frequency {
   font-family: monospace;
   font-weight: normal;
-  margin: 0.5rem;
   font-size: min(3vw, 3vh);
-  user-select: none;
   text-wrap: nowrap;
   text-align: center;
+  user-select: none;
 }
 
 .highlight {
@@ -21,10 +20,12 @@
 
 @media all and (display-mode: standalone) {
   .note {
-    font-size: min(30vw, 20vh);
+    font-size: min(40vw, 20vh);
+    text-shadow: 0 0 0.5rem var(--shadow-color);
   }
   
   .frequency {
     font-size: min(5vw, 5vh);
+    text-shadow: 0 0 0.5rem var(--shadow-color);
   }
 }
