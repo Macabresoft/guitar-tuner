@@ -1,7 +1,7 @@
 {
   "name": "Guitar Tuner by Macabresoft",
   "short_name": "Guitar Tuner",
-  "theme_color": "#1976d2",
+  "theme_color": "#634960",
   "background_color": "#483646",
   "display": "standalone",
   "scope": "./",
@@ -54,6 +54,19 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "monochrome any"
     }
+  ],
+  "id": "https://www.macabresoft.com/guitar-tuner",
+  "description": "A simple guitar tuner without ads or in-app purchases.",
+  "categories": [
+    "music",
+    "productivity",
+    "utilities"
   ]
 }
