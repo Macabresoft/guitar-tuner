@@ -14,6 +14,7 @@ export class TunerComponent {
   private readonly meterBins = 10;
   private readonly minimumFrequency = 60.0;
   private readonly maximumFrequency = 392.0;
+  private readonly maximumNoNoteCount = 10;
   private readonly notes: Note[] = [
     { frequency: 73.42, halfStepDown: 69.30, halfStepUp: 77.78, name: 'D', octave: 2 },
     { frequency: 82.41, halfStepDown: 77.78, halfStepUp: 87.31, name: 'E', octave: 2},
@@ -31,6 +32,7 @@ export class TunerComponent {
   frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
   frequencyMeterRight = this.createDefaultFrequencyMeterRight();
   isHighlighted = false;
+  noNoteCount = 0;
   subscription?: Subscription;
 
   constructor(private frequencyService: FrequencyService) {  
@@ -79,10 +81,10 @@ export class TunerComponent {
   }
 
   private update() : void {
-
     try {
       let bufferInformation = this.frequencyService.GetBufferInformation();
       if (bufferInformation.volume > this.volumeThreshold) {
+        this.noNoteCount = 0;
         this.currentFrequency = bufferInformation.frequency.toFixed(2);
         let currentNote = this.getNearestNote(bufferInformation);
         if (currentNote.frequency > 0) {
@@ -116,6 +118,15 @@ export class TunerComponent {
             this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
             this.isHighlighted = true;
           }
+        }
+      }
+      else {
+        this.noNoteCount++;
+
+        if (this.noNoteCount > this.maximumNoNoteCount) {
+          this.currentFrequency = ''
+          this.currentNote = undefined;
+          this.isHighlighted = false;
         }
       }
     }
