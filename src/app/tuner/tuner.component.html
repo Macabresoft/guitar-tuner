@@ -5,5 +5,5 @@
   <p>
     &#x266d;{{ frequencyMeterLeft }}<span [ngClass]="{'highlight' : isHighlighted}">|</span>{{ frequencyMeterRight }}&#x266F;
   </p>
-  <p>{{ currentFrequency }} Hz</p>
+  <p>{{ currentFrequency | number : '1.2-2' }} Hz</p>
 </div>

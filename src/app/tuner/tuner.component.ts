@@ -25,9 +25,9 @@ export class TunerComponent {
     { frequency: 329.63, halfStepDown:  311.13, halfStepUp: 349.23, name: 'E', octave: 4 }
   ];
 
-  private readonly volumeThreshold = 0.001;
+  private readonly volumeThreshold = 0.01;
 
-  currentFrequency = '';
+  currentFrequency: number = 0;
   currentNote?: Note;
   frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
   frequencyMeterRight = this.createDefaultFrequencyMeterRight();
@@ -61,6 +61,14 @@ export class TunerComponent {
     return '[' + '-'.repeat(this.meterBins);
   }
 
+  private getAveragedFrequency(newFrequency: number) : number {
+    if (this.currentFrequency <= 0) {
+      return newFrequency;
+    }
+
+    return (newFrequency + this.currentFrequency) / 2;
+  }
+
   private async getMediaStream(): Promise<MediaStream> {
     return await navigator.mediaDevices.getUserMedia({ audio: true });
   }
@@ -85,7 +93,7 @@ export class TunerComponent {
       let bufferInformation = this.frequencyService.GetBufferInformation();
       if (bufferInformation.volume > this.volumeThreshold) {
         this.noNoteCount = 0;
-        this.currentFrequency = bufferInformation.frequency.toFixed(2);
+        this.currentFrequency = this.getAveragedFrequency(bufferInformation.frequency);
         let currentNote = this.getNearestNote(bufferInformation);
         if (currentNote.frequency > 0) {
           this.currentNote = currentNote;
@@ -124,7 +132,7 @@ export class TunerComponent {
         this.noNoteCount++;
 
         if (this.noNoteCount > this.maximumNoNoteCount) {
-          this.currentFrequency = ''
+          this.currentFrequency = 0;
           this.currentNote = undefined;
           this.isHighlighted = false;
         }
