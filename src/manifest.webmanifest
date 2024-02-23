@@ -62,7 +62,7 @@
       "purpose": "monochrome"
     }
   ],
-  "id": "https://www.macabresoft.com/guitar-tuner",
+  "id": "com.macabresoft.www.guitartuner",
   "description": "A simple guitar tuner without ads or in-app purchases.",
   "categories": [
     "music",
