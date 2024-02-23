@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1708700319071,
+  "timestamp": 1708700408830,
   "index": "/guitar-tuner/index.html",
   "assetGroups": [
     {
@@ -28,12 +28,35 @@
       "cacheQueryOptions": {
         "ignoreVary": true
       },
-      "urls": [],
+      "urls": [
+        "/guitar-tuner/assets/icons/icon-128x128.png",
+        "/guitar-tuner/assets/icons/icon-144x144.png",
+        "/guitar-tuner/assets/icons/icon-152x152.png",
+        "/guitar-tuner/assets/icons/icon-16x16.png",
+        "/guitar-tuner/assets/icons/icon-192x192.png",
+        "/guitar-tuner/assets/icons/icon-32x32.png",
+        "/guitar-tuner/assets/icons/icon-384x384.png",
+        "/guitar-tuner/assets/icons/icon-48x48.png",
+        "/guitar-tuner/assets/icons/icon-512x512.png",
+        "/guitar-tuner/assets/icons/icon-72x72.png",
+        "/guitar-tuner/assets/icons/icon-96x96.png"
+      ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
+    "/guitar-tuner/assets/icons/icon-128x128.png": "40ef3cec819613965fcca19bbdd0884d57cf872d",
+    "/guitar-tuner/assets/icons/icon-144x144.png": "1b1623e2f7dfc1937e24b3d1429ddbe9e69917af",
+    "/guitar-tuner/assets/icons/icon-152x152.png": "e549fbba76e589d07a1e89248dbfb9ab2af7c7f1",
+    "/guitar-tuner/assets/icons/icon-16x16.png": "a85164f56d483e72efeddcb0af24b3c64bce2b92",
+    "/guitar-tuner/assets/icons/icon-192x192.png": "b58a18bcfece21463394e3413b1549eb7a14e3c5",
+    "/guitar-tuner/assets/icons/icon-32x32.png": "47de03d2f0e2fc6df3b75a86925031eef571e7b9",
+    "/guitar-tuner/assets/icons/icon-384x384.png": "dbbedb628d3d9d548e4c90a96fd267b5cd0d1af1",
+    "/guitar-tuner/assets/icons/icon-48x48.png": "6b29c80c3d333763cf2c937014d3770b0f1bb924",
+    "/guitar-tuner/assets/icons/icon-512x512.png": "06867e2c92bcc48d38ddbbb0354a6b98a70d0e9f",
+    "/guitar-tuner/assets/icons/icon-72x72.png": "d2778189f5ce5b757f8f8dbf17ac00c252d6ad0e",
+    "/guitar-tuner/assets/icons/icon-96x96.png": "63cf54846976d0c1bd1175e6aed0ccda4d61d92e",
     "/guitar-tuner/favicon.ico": "975048b136210f52475f4b11f46e5de24badf52a",
     "/guitar-tuner/index.html": "7ae80b25790f014b7e2223e3bcf15965b7366d4e",
     "/guitar-tuner/main.f9665e1250eb92bb.js": "af4eed47a9ed09991912399f99095790d4b4f845",
