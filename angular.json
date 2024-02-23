@@ -23,7 +23,18 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/assets/icons/icon-16x16.png",
+              "src/assets/icons/icon-32x32.png",
+              "src/assets/icons/icon-48x48.png",
+              "src/assets/icons/icon-72x72.png",
+              "src/assets/icons/icon-96x96.png",
+              "src/assets/icons/icon-128x128.png",
+              "src/assets/icons/icon-144x144.png",
+              "src/assets/icons/icon-152x152.png",
+              "src/assets/icons/icon-192x192.png",
+              "src/assets/icons/icon-384x384.png",
+              "src/assets/icons/icon-512x512.png"
             ],
             "styles": [
               "src/styles.css"
