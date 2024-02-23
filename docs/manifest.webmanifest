@@ -56,10 +56,10 @@
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-48x48.png",
-      "sizes": "48x48",
+      "src": "assets/icons/icon-monochrome-512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "monochrome any"
+      "purpose": "monochrome"
     }
   ],
   "id": "https://www.macabresoft.com/guitar-tuner",
@@ -68,5 +68,8 @@
     "music",
     "productivity",
     "utilities"
-  ]
+  ],
+  "display_override": ["window-controls-overlay"],
+  "orientation": "portrait",
+  "edge_side_panel": {}
 }
