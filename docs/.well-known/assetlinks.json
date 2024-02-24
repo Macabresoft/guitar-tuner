@@ -1,8 +1,0 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "com.macabresoft.www.guitartuner",
-        "sha256_cert_fingerprints": ["65:4C:38:E2:A0:15:3D:28:96:81:3B:BD:F1:00:C6:ED:4D:05:D6:9C:2E:AB:A0:07:E7:F9:D0:2A:A0:89:8B:87"]
-      }
-    }]
