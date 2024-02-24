@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1708787696368,
+  "timestamp": 1708788006733,
   "index": "/guitar-tuner/index.html",
   "assetGroups": [
     {
@@ -38,9 +38,9 @@
         "/guitar-tuner/assets/icons/icon-72x72.png",
         "/guitar-tuner/assets/icons/icon-96x96.png",
         "/guitar-tuner/assets/icons/icon-monochrome-512x512.png",
-        "/guitar-tuner/assets/screenshots/screenshot-01.png",
-        "/guitar-tuner/assets/screenshots/screenshot-02.png",
-        "/guitar-tuner/assets/screenshots/screenshot-03.png"
+        "/guitar-tuner/assets/screenshots/01.png",
+        "/guitar-tuner/assets/screenshots/02.png",
+        "/guitar-tuner/assets/screenshots/03.png"
       ],
       "patterns": []
     }
@@ -56,13 +56,13 @@
     "/guitar-tuner/assets/icons/icon-72x72.png": "048bca65b5e842df355c9c75b85cb3540c10bab5",
     "/guitar-tuner/assets/icons/icon-96x96.png": "5002ad3104781db9fcafdd14076d660b46e2084a",
     "/guitar-tuner/assets/icons/icon-monochrome-512x512.png": "85908b5b707e30b1b48a74571cdcd799ca7085d9",
-    "/guitar-tuner/assets/screenshots/screenshot-01.png": "45a84315fe4e41686a35cf34d17bfcdbe62a303c",
-    "/guitar-tuner/assets/screenshots/screenshot-02.png": "e6e2217f5aef9f18bb1c47dd8b6844554cff35f9",
-    "/guitar-tuner/assets/screenshots/screenshot-03.png": "2a7f82574cf306ece4a393727764b43cf47443c9",
+    "/guitar-tuner/assets/screenshots/01.png": "45a84315fe4e41686a35cf34d17bfcdbe62a303c",
+    "/guitar-tuner/assets/screenshots/02.png": "e6e2217f5aef9f18bb1c47dd8b6844554cff35f9",
+    "/guitar-tuner/assets/screenshots/03.png": "2a7f82574cf306ece4a393727764b43cf47443c9",
     "/guitar-tuner/favicon.ico": "975048b136210f52475f4b11f46e5de24badf52a",
     "/guitar-tuner/index.html": "7ae80b25790f014b7e2223e3bcf15965b7366d4e",
     "/guitar-tuner/main.f9665e1250eb92bb.js": "af4eed47a9ed09991912399f99095790d4b4f845",
-    "/guitar-tuner/manifest.webmanifest": "8e6a627975d6b9dcb171ffef5cd7f4d6c2528d0b",
+    "/guitar-tuner/manifest.webmanifest": "3f7b20891a83a7f9560a12c50cea80375755cdab",
     "/guitar-tuner/polyfills.8148777ebeb0a209.js": "87d6fc0f69107e173e2c61443878e0d3bbf9a2fa",
     "/guitar-tuner/runtime.0f34f3f273ff3d97.js": "17c6825a72d3cd4270d52d121d2e6d3ab1899456",
     "/guitar-tuner/styles.6a868003dd015400.css": "a6a8311c9ce09dadfcdb14fab7b7714102403fcc"

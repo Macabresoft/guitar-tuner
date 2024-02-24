@@ -71,5 +71,25 @@
   ],
   "display_override": ["standalone", "window-controls-overlay"],
   "orientation": "portrait",
-  "edge_side_panel": {}
+  "edge_side_panel": {},
+  "screenshots" : [
+    {
+      "src": "assets/screenshots/01.png",
+      "sizes": "1086x1548",
+      "type": "image/png",
+      "platform": "narrow"
+    },
+    {
+      "src": "assets/screenshots/02.png",
+      "sizes": "1086x1548",
+      "type": "image/png",
+      "platform": "narrow"
+    },
+    {
+      "src": "assets/screenshots/03.png",
+      "sizes": "1086x1548",
+      "type": "image/png",
+      "platform": "narrow"
+    }
+  ]
 }
