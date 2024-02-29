@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1708788902611,
+  "timestamp": 1709247896697,
   "index": "/guitar-tuner/index.html",
   "assetGroups": [
     {
@@ -55,7 +55,7 @@
     "/guitar-tuner/assets/icons/icon-512x512.png": "dbf43ac00747d277bbfcb9a42afdec1a46118f39",
     "/guitar-tuner/assets/icons/icon-72x72.png": "048bca65b5e842df355c9c75b85cb3540c10bab5",
     "/guitar-tuner/assets/icons/icon-96x96.png": "5002ad3104781db9fcafdd14076d660b46e2084a",
-    "/guitar-tuner/assets/icons/icon-monochrome-512x512.png": "85908b5b707e30b1b48a74571cdcd799ca7085d9",
+    "/guitar-tuner/assets/icons/icon-monochrome-512x512.png": "41a90c1a98b472070bcdc8a4a9614c5f51ab2f98",
     "/guitar-tuner/assets/screenshots/01.png": "45a84315fe4e41686a35cf34d17bfcdbe62a303c",
     "/guitar-tuner/assets/screenshots/02.png": "e6e2217f5aef9f18bb1c47dd8b6844554cff35f9",
     "/guitar-tuner/assets/screenshots/03.png": "2a7f82574cf306ece4a393727764b43cf47443c9",
