@@ -93,6 +93,7 @@ footer a {
   }
 
   .version {
+    display: inline;
     position:absolute;
     bottom: 0;
     right: 0;
