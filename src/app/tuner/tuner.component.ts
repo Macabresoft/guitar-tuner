@@ -103,8 +103,8 @@ export class TunerComponent {
     return await navigator.mediaDevices.getUserMedia({ audio: true });
   }
 
-  private getNearestNote(currentFrequency: number) : Note {
-    let result = { frequency: 0, halfStepDown: -Infinity, halfStepUp: -Infinity, name: '', octave: -Infinity};
+  private getNearestNote(currentFrequency: number) : Note | undefined {
+    let result = undefined;
     
     for (let i = 0; i < this.notes.length; i++) {
       let note = this.notes[i];
