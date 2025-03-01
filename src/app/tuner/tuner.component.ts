@@ -127,19 +127,15 @@ export class TunerComponent {
         this.currentNote = this.getNearestNote(this.currentFrequency);
         this.resetDisplay();
       }
-      else {
+      else if (this.noNoteCount === this.maximumNoNoteCount) {
         this.noNoteCount++;
-
-        if (this.noNoteCount > this.maximumNoNoteCount) {
-          let shouldResetDisplay = this.currentNote !== undefined;
-          this.currentFrequency = 0;
-          this.currentNote = undefined;
-          this.isHighlighted = false;
-
-          if (shouldResetDisplay) {
-            this.resetDisplay();
-          }
-        }
+        this.currentFrequency = 0;
+        this.currentNote = undefined;
+        this.isHighlighted = false;
+        this.resetDisplay();
+      }
+      else if (this.noNoteCount < this.maximumNoNoteCount) {
+        this.noNoteCount++;
       }
     }
     catch (e) {
