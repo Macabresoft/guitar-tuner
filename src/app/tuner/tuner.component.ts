@@ -43,7 +43,7 @@ export class TunerComponent {
     this.frequencyService.Initialize(stream, this.minimumFrequency, this.maximumFrequency);
 
     if (stream) {
-      this.subscription = timer(0, 250).subscribe(() => this.update());
+      this.subscription = timer(0, 500).subscribe(() => this.update());
     }
   }
 

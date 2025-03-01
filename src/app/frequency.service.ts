@@ -22,6 +22,7 @@ export class FrequencyService {
     this.audioContext = new AudioContext();
     this.sampleRate = this.audioContext.sampleRate;
     this.audioAnalyser = this.audioContext.createAnalyser();
+    this.audioAnalyser.fftSize = 4096;
     this.audioSource = this.audioContext.createMediaStreamSource(audioStream);
     this.bufferLength = this.audioAnalyser.fftSize;
     this.samples = new Float32Array(this.bufferLength);

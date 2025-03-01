@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'guitar-tuner';
-  version = 'v1.1.5' 
+  version = 'v1.1.6' 
 }
