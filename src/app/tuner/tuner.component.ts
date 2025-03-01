@@ -15,8 +15,6 @@ export class TunerComponent {
   private readonly minimumFrequency = 60.0;
   private readonly maximumFrequency = 392.0;
   private readonly maximumNoNoteCount = 10;
-  private readonly maximumRollingFrequencies = 4;
-  private readonly frequenciesForAverage = 3;
   private readonly notes: Note[] = [
     { frequency: 73.42, halfStepDown: 69.30, halfStepUp: 77.78, name: 'D', octave: 2 },
     { frequency: 82.41, halfStepDown: 77.78, halfStepUp: 87.31, name: 'E', octave: 2},
@@ -28,7 +26,6 @@ export class TunerComponent {
   ];
 
   private readonly volumeThreshold = 0.01;
-  private readonly rollingFrequencies: number[] = [];
 
   currentFrequency: number = 0;
   currentNote?: Note;
@@ -56,33 +53,6 @@ export class TunerComponent {
     }
   }
 
-  applyNewFrequency(newFrequency: number) : void {
-    this.rollingFrequencies.unshift(newFrequency);
-
-    while(this.rollingFrequencies.length > this.maximumRollingFrequencies) {
-      this.rollingFrequencies.pop();
-    }
-  }
-
-  getAveragedFrequency() : number {
-    if (this.rollingFrequencies.length > 1) {
-      let totalAverage = this.rollingFrequencies.reduce((a, b) => a + b) / this.rollingFrequencies.length;
-
-      if (this.rollingFrequencies.length <= this.frequenciesForAverage) {
-          return totalAverage;
-      }
-      else {
-        let sorted = this.rollingFrequencies.slice().sort((a, b) => Math.abs(a - totalAverage) - Math.abs(b - totalAverage));
-        return sorted.slice(0, this.frequenciesForAverage).reduce((a, b) => a + b) / this.frequenciesForAverage;
-      }
-    }
-    else if (this.rollingFrequencies.length == 1) {
-      return this.rollingFrequencies[0];
-    }
-
-    return this.currentFrequency;
-  }
-
   private createDefaultFrequencyMeterRight() : string {
     return '-'.repeat(this.meterBins) + ']';
   }
@@ -105,22 +75,27 @@ export class TunerComponent {
         let current = this.currentNote.halfStepUp - this.currentFrequency;
         offset += Math.ceil((current / totalStep) * this.meterBins);
       }
-    }
 
-    if (offset < this.meterBins) {
-      this.frequencyMeterLeft = '[' + '-'.repeat(offset) + '>' + '-'.repeat(this.meterBins - offset - 1);
-      this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
-      this.isHighlighted = false;
-    }
-    else if (offset > this.meterBins) {
-      this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
-      this.frequencyMeterRight = '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
-      this.isHighlighted = false;
+      if (offset < this.meterBins) {
+        this.frequencyMeterLeft = '[' + '-'.repeat(offset) + '>' + '-'.repeat(this.meterBins - offset - 1);
+        this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
+        this.isHighlighted = false;
+      }
+      else if (offset > this.meterBins) {
+        this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
+        this.frequencyMeterRight = '-'.repeat((this.meterBins * 2) - offset) + '<' + '-'.repeat(offset - this.meterBins - 1) + ']';
+        this.isHighlighted = false;
+      }
+      else {
+        this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
+        this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
+        this.isHighlighted = true;
+      }
     }
     else {
       this.frequencyMeterLeft = this.createDefaultFrequencyMeterLeft();
       this.frequencyMeterRight = this.createDefaultFrequencyMeterRight();
-      this.isHighlighted = true;
+      this.isHighlighted = false;
     }
   }
 
@@ -146,38 +121,26 @@ export class TunerComponent {
   private update() : void {
     try {
       let bufferInformation = this.frequencyService.GetBufferInformation();
-      let currentNote = undefined;
       if (bufferInformation.volume > this.volumeThreshold) {
         this.noNoteCount = 0;
-        this.applyNewFrequency(bufferInformation.frequency);
-        this.currentFrequency = this.getAveragedFrequency();
-        currentNote = this.getNearestNote(this.currentFrequency);
+        this.currentFrequency = bufferInformation.frequency
+        this.currentNote = this.getNearestNote(this.currentFrequency);
+        this.resetDisplay();
       }
       else {
         this.noNoteCount++;
 
         if (this.noNoteCount > this.maximumNoNoteCount) {
+          let shouldResetDisplay = this.currentNote !== undefined;
           this.currentFrequency = 0;
-          currentNote = undefined;
-          this.isHighlighted = false;
-        }
-        else {
-          this.rollingFrequencies.pop();
-          this.currentFrequency = this.getAveragedFrequency();
-          currentNote = this.getNearestNote(this.currentFrequency);
-        }
-      }
-
-      if (currentNote) {
-        if (currentNote.frequency <= 0) {
           this.currentNote = undefined;
-        }
-        else {
-          this.currentNote = currentNote;
+          this.isHighlighted = false;
+
+          if (shouldResetDisplay) {
+            this.resetDisplay();
+          }
         }
       }
-
-      this.resetDisplay();
     }
     catch (e) {
     }
