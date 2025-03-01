@@ -28,7 +28,7 @@ describe('TunerComponent', () => {
   })
 
   it('should have exact frequency when consistently the same', () => {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 4; i++) {
       component.applyNewFrequency(10);
     }
 
@@ -37,24 +37,11 @@ describe('TunerComponent', () => {
   })
 
   it('should have exact frequency when consistently the same with one outlier', () => {
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 3; i++) {
       component.applyNewFrequency(10);
     }
 
     component.applyNewFrequency(100);
-    
-    let average = component.getAveragedFrequency();
-    expect(average).toEqual(10);
-  })
-
-  it('should have exact frequency when consistently the same with maximum outliers', () => {
-    for (let i = 0; i < 6; i++) {
-      component.applyNewFrequency(10);
-    }
-
-    for (let i = 0; i < 4; i++) {
-      component.applyNewFrequency(100);
-    }
     
     let average = component.getAveragedFrequency();
     expect(average).toEqual(10);

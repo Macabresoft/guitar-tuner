@@ -15,8 +15,8 @@ export class TunerComponent {
   private readonly minimumFrequency = 60.0;
   private readonly maximumFrequency = 392.0;
   private readonly maximumNoNoteCount = 10;
-  private readonly maximumRollingFrequencies = 10;
-  private readonly frequenciesForAverage = 6;
+  private readonly maximumRollingFrequencies = 4;
+  private readonly frequenciesForAverage = 3;
   private readonly notes: Note[] = [
     { frequency: 73.42, halfStepDown: 69.30, halfStepUp: 77.78, name: 'D', octave: 2 },
     { frequency: 82.41, halfStepDown: 77.78, halfStepUp: 87.31, name: 'E', octave: 2},
@@ -146,31 +146,38 @@ export class TunerComponent {
   private update() : void {
     try {
       let bufferInformation = this.frequencyService.GetBufferInformation();
+      let currentNote = undefined;
       if (bufferInformation.volume > this.volumeThreshold) {
         this.noNoteCount = 0;
         this.applyNewFrequency(bufferInformation.frequency);
         this.currentFrequency = this.getAveragedFrequency();
-        let currentNote = this.getNearestNote(this.currentFrequency);
-        if (currentNote.frequency > 0) {
-          this.currentNote = currentNote;
-          this.resetDisplay();
-        }
+        currentNote = this.getNearestNote(this.currentFrequency);
       }
       else {
         this.noNoteCount++;
 
         if (this.noNoteCount > this.maximumNoNoteCount) {
           this.currentFrequency = 0;
-          this.currentNote = undefined;
+          currentNote = undefined;
           this.isHighlighted = false;
         }
         else {
           this.rollingFrequencies.pop();
           this.currentFrequency = this.getAveragedFrequency();
+          currentNote = this.getNearestNote(this.currentFrequency);
         }
-
-        this.resetDisplay();
       }
+
+      if (currentNote) {
+        if (currentNote.frequency <= 0) {
+          this.currentNote = undefined;
+        }
+        else {
+          this.currentNote = currentNote;
+        }
+      }
+
+      this.resetDisplay();
     }
     catch (e) {
     }
