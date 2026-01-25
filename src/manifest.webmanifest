@@ -1,5 +1,5 @@
 {
-  "name": "Guitar Tuner by Macabresoft",
+  "name": "Guitar Tuner by macabrett",
   "short_name": "Guitar Tuner",
   "theme_color": "#634960",
   "background_color": "#634960",
@@ -62,7 +62,7 @@
       "purpose": "monochrome"
     }
   ],
-  "id": "com.macabresoft.www.guitartuner",
+  "id": "com.macabrett.www.guitartuner",
   "description": "A simple guitar tuner without ads or in-app purchases.",
   "categories": [
     "music",

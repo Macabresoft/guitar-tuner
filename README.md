@@ -1,4 +1,4 @@
-# Guitar Tuner by Macabresoft
+# Guitar Tuner by macabrett
 
 A guitar tuner built for the web.
 
@@ -25,14 +25,14 @@ More on deploying Angular apps can be found [here](https://angular.io/guide/depl
 
 ### Android
 
-* Open `https://www.macabresoft.com/guitar-tuner/` in Chrome
+* Open `https://www.macabrett.com/guitar-tuner/` in Chrome
 * Tap the three dots in the upper right corner for options
 * Select `Install app` from the drop-down
 
 You can now pin a standalone version of the app to your home screen. This will continue to work offline.
 
 ### Windows
-* Open `https://www.macabresoft.com/guitar-tuner/` in Chrome
+* Open `https://www.macabrett.com/guitar-tuner/` in Chrome
 * In the address bar, click an icon with a down arrow in front of a computer monitor
 * Follow instructions to install the app
 
