@@ -5,10 +5,11 @@ import { BufferInformation } from '../buffer-information';
 import { Subscription } from 'rxjs';
 import {timer} from 'rxjs' ;
 @Component({
-  selector: 'app-tuner',
-  templateUrl: './tuner.component.html',
-  styleUrls: ['./tuner.component.css'],
-  providers: [FrequencyService]
+    selector: 'app-tuner',
+    templateUrl: './tuner.component.html',
+    styleUrls: ['./tuner.component.css'],
+    providers: [FrequencyService],
+    standalone: false
 })
 export class TunerComponent {
   private readonly meterBins = 10;
