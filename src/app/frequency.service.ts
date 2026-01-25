@@ -8,7 +8,7 @@ export class FrequencyService {
   audioContext?: AudioContext;
   audioAnalyser?: AnalyserNode;
   audioSource?: MediaStreamAudioSourceNode;
-  samples?: Float32Array;
+  samples?: Float32Array<ArrayBuffer>;
   bufferLength: number = 0;
   channels: number = 0;
   lowPeriod: number = 0;
