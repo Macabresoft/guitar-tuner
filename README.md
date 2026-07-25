@@ -1,3 +1,7 @@
+# ARCHIVED
+
+This project has moved to [codeberg](https://codeberg.org/macabrett/guitar-tuner).
+
 # Guitar Tuner by macabrett
 
 A guitar tuner built for the web.
